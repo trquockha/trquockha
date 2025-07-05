@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>TrQuocKha</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    #bg-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+    #app {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-align: center;
+      padding-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Key form -->
+<div id="key-section">
+  <input type="text" id="keyInput" placeholder="Nhập mã key để mở khóa menu">
+  <button onclick="checkKey()">Xác nhận</button>
+  <p id="error" style="color:red;"></p>
+</div>
+
+<!-- Hidden menu -->
+<div id="app" style="display:none;">
+  <h1>TrQuocKha Mod Menu</h1>
+  <button onclick="mod1()">MOD 1</button>
+</div>
+
+<script>
+  async function checkKey() {
+    const key = document.getElementById("keyInput").value;
+    const url = `https://udid.baontq.xyz/udid.php?id=22633&openurl=${key}`;
+
+    try {
+      const response = await fetch(url);
+      const result = await response.text();
+
+      if (result.includes("openurl")) {
+        document.getElementById("key-section").style.display = "none";
+        document.getElementById("app").style.display = "block";
+      } else {
+        document.getElementById("error").innerText = "Sai key hoặc chưa được cấp quyền!";
+      }
+    } catch (e) {
+      document.getElementById("error").innerText = "Không thể kết nối tới server.";
+    }
+  }
+
+  function mod1() {
+    h5gg.clearResults();
+    h5gg.searchNumber('909000001','I32','0x100000000','0x200000000');
+    h5gg.editAll('909035007','I32');
+    h5gg.clearResults();
+  }
+</script>
+
+</body>
+</html>
